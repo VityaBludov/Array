@@ -7,9 +7,9 @@
 int arrayA[SIZE] = {35, 11, 57, 5, 66, 43, 2, 1, 95, 8};
 int arrayB[SIZE] = {4, 1, 70, 32, 14, 22, 5, 0, 37, 9};
 
-void bubbleSort(int array[], int n);
-void insertionSort(int array[], int n);
-int linearSearch(int number, int array[], int n);
+void bubbleSort();
+void insertionSort();
+int linearSearch(int number);
 
 /**
  * main
@@ -21,7 +21,7 @@ int main() {
     for (int i = 0; i < SIZE; i++) printf("%d ", arrayA[i]);
         
     // print sorted array A
-    bubbleSort(arrayA, SIZE);
+    bubbleSort();
     printf("\nArray A after sorting:\n");
     for (int i = 0; i < SIZE; i++) printf("%d ", arrayA[i]);
     printf("\n");
@@ -32,7 +32,7 @@ int main() {
     for (int i = 0; i < SIZE; i++) printf("%d ", arrayB[i]);
     
     // print sorted array B
-    insertionSort(arrayB, SIZE);
+    insertionSort();
     printf("\nArray B after sorting:\n");
     for (int i = 0; i < SIZE; i++) printf("%d ", arrayB[i]);
     printf("\n");
@@ -40,7 +40,7 @@ int main() {
     /*------------linear search------------*/
     // find number
     int number = 43;
-    printf("\nIndex of 43: %d", linearSearch(number, arrayA, SIZE));
+    printf("\nIndex of 43: %d\n", linearSearch(number));
     
     return 0;
 }
@@ -48,20 +48,20 @@ int main() {
 /**
  * Sorts array of n values using bubble sort algorithm
  */
-void bubbleSort(int array[], int n) {
+void bubbleSort() {
     int swap;
     
     do {
         swap = 0;
-        for (int i = 1; i < n; i++) {
+        for (int i = 1; i < SIZE; i++) {
             // spare element for swap
             int spare;
             
-            if (array[i] < array[i - 1]) {
+            if (arrayA[i] < arrayA[i - 1]) {
                 // swap values
-                spare = array[i - 1];
-                array[i - 1] = array[i];
-                array[i] = spare;
+                spare = arrayA[i - 1];
+                arrayA[i - 1] = arrayA[i];
+                arrayA[i] = spare;
                 swap = 1;
             }
         }
@@ -73,19 +73,19 @@ void bubbleSort(int array[], int n) {
 /**
  * Sorts array of n values using insertion sort algorithm
  */
-void insertionSort(int array[], int n)
+void insertionSort()
 {
-    for (int i = 1; i < n; i++) {
+    for (int i = 1; i < SIZE; i++) {
         // current element for sorting
-        int current = array[i];
+        int current = arrayB[i];
         int j = i;
          
         // move right to left through sorted part of array
-        while ((j > 0) && (array[j - 1] > current)) {
-            array[j] = array[j - 1];
+        while ((j > 0) && (arrayB[j - 1] > current)) {
+            arrayB[j] = arrayB[j - 1];
             j = j - 1;
         }
-        array[j] = current;
+        arrayB[j] = current;
     }
      
     return;
@@ -96,9 +96,9 @@ void insertionSort(int array[], int n)
  * or -1 if not found.
  * Uses linear sort
  */
-int linearSearch(int number, int array[], int n) {
-    for (int i = 0; i < n; i++)
-        if (array[i] == number) return i;
+int linearSearch(int number) {
+    for (int i = 0; i < SIZE; i++)
+        if (arrayA[i] == number) return i;
     
     // not found
     return -1;
